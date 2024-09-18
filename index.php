@@ -59,6 +59,20 @@
             return $this->flavor;
         }
     }
+    
+    class Toy extends Product {
+        private $material;
+
+        public function __construct($name, $price, $image, Category $category, $material) {
+            parent::__construct($name, $price, $image, $category, 'Gioco');
+            $this->material = $material;
+        }
+
+        public function getMaterial() {
+            return $this->material;
+        }
+    }
+
 ?>
 </body>
 </html>
