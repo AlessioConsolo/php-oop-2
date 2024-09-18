@@ -1,3 +1,88 @@
+<?php
+
+class Product {
+    private $name;
+    private $price;
+    private $image;
+    private $category;
+    private $type;
+
+    public function __construct($name, $price, $image, $category, $type) {
+        $this->name = $name;
+        $this->price = $price;
+        $this->image = $image;
+        $this->category = $category;
+        $this->type = $type;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getPrice() {
+        return $this->price;
+    }
+
+    public function getImage() {
+        return $this->image;
+    }
+
+    public function getCategory() {
+        return $this->category;
+    }
+
+    public function getType() {
+        return $this->type;
+    }
+}
+
+class Category {
+    private $name;
+    private $icon;
+
+    public function __construct($name, $icon) {
+        $this->name = $name;
+        $this->icon = $icon;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getIcon() {
+        return $this->icon;
+    }
+}
+
+class Shop {
+    private $products = [];
+
+    public function addProduct(Product $product) {
+        $this->products[] = $product;
+    }
+
+    public function getProducts() {
+        return $this->products;
+    }
+}
+
+// Creazione delle categorie
+$dogCategory = new Category("Cani", "dog-icon.png");
+$catCategory = new Category("Gatti", "cat-icon.png");
+
+// Creazione di alcuni prodotti
+$product1 = new Product("Croccantini per Cani", 20.99, "./images/MC_SI_crocchette_MV_2-5.jpg", $dogCategory, "Cibo");
+$product2 = new Product("Pallina per Gatti", 5.99, "./images/Screenshot_2024-09-18_175301.png", $catCategory, "Gioco");
+$product3 = new Product("Cuccia per Cani", 45.00, "./images/Screenshot_2024-09-18_175749.png", $dogCategory, "Cuccia");
+
+// Creazione del negozio e aggiunta dei prodotti
+$shop = new Shop();
+$shop->addProduct($product1);
+$shop->addProduct($product2);
+$shop->addProduct($product3);
+
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -7,151 +92,23 @@
     <title>Negozio Online per Animali</title>
 </head>
 <body>
-    <h1>Negozio Online per Animali</h1>
-    
+<h1>Negozio Online per Animali</h1>
+<div class="cards-container">
     <?php
-
-    class Product {
-        protected $name;
-        protected $price;
-        protected $image;
-        protected $category;
-        protected $type;
-
-        public function __construct($name, $price, $image, Category $category, $type) {
-            $this->name = $name;
-            $this->price = $price;
-            $this->image = $image;
-            $this->category = $category;
-            $this->type = $type;
-        }
-
-        public function getName() {
-            return $this->name;
-        }
-
-        public function getPrice() {
-            return $this->price;
-        }
-
-        public function getImage() {
-            return $this->image;
-        }
-
-        public function getCategory() {
-            return $this->category;
-        }
-
-        public function getType() {
-            return $this->type;
-        }
-    }
-
-    class Food extends Product {
-        private $flavor;
-
-        public function __construct($name, $price, $image, Category $category, $flavor) {
-            parent::__construct($name, $price, $image, $category, 'Cibo');
-            $this->flavor = $flavor;
-        }
-
-        public function getFlavor() {
-            return $this->flavor;
-        }
-    }
-
-    class Toy extends Product {
-        private $material;
-
-        public function __construct($name, $price, $image, Category $category, $material) {
-            parent::__construct($name, $price, $image, $category, 'Gioco');
-            $this->material = $material;
-        }
-
-        public function getMaterial() {
-            return $this->material;
-        }
-    }
-
-    class Bed extends Product {
-        private $size;
-
-        public function __construct($name, $price, $image, Category $category, $size) {
-            parent::__construct($name, $price, $image, $category, 'Cuccia');
-            $this->size = $size;
-        }
-
-        public function getSize() {
-            return $this->size;
-        }
-    }
-
-    class Category {
-        private $name;
-        private $icon;
-
-        public function __construct($name, $icon) {
-            $this->name = $name;
-            $this->icon = $icon;
-        }
-
-        public function getName() {
-            return $this->name;
-        }
-
-        public function getIcon() {
-            return $this->icon;
-        }
-    }
-
-    class Shop {
-        private $products = [];
-
-        public function addProduct(Product $product) {
-            $this->products[] = $product;
-        }
-
-        public function getProducts() {
-            return $this->products;
-        }
-    }
-
-    class Card {
-        public static function render(Product $product) {
-            echo '<div class="card">';
-            echo '<img class="product-img" src="' . $product->getImage() . '" alt="' . $product->getName() . '">';
-            echo '<h2>' . $product->getName() . '</h2>';
-            echo '<p>Prezzo: €' . $product->getPrice() . '</p>';
-            echo '<p>Categoria: ' . $product->getCategory()->getName() . '</p>';
-            echo '<p>Tipo: ' . $product->getType() . '</p>';
-            echo '<img class="icon" src="' . $product->getCategory()->getIcon() . '" alt="Icona ' . $product->getCategory()->getName() . '">';
-            echo '</div>';
-        }
-    }
-
-    // Categorie
-    $dogCategory = new Category("Cani", "./images/dog.png");
-    $catCategory = new Category("Gatti", "./images/cat.png");
-
-    // Prodotti
-    $dogFood = new Food("Croccantini per Cani", 20.99, "./images/MC_SI_crocchette_MV_2-5.jpg", $dogCategory, "Pollo");
-    $catToy = new Toy("Pallina per Gatti", 5.99, "./images/Screenshot_2024-09-18_175301.png", $catCategory, "Lana");
-    $dogBed = new Bed("Cuccia per Cani", 50.00, "./images/Screenshot_2024-09-18_175749.png", $dogCategory, "Grande");
-
-    // Negozio
-    $shop = new Shop();
-    $shop->addProduct($dogFood);
-    $shop->addProduct($catToy);
-    $shop->addProduct($dogBed);
-    ?>
-
-    <div class="cards-container">
-        <?php
-            // Stampa dei prodotti nel container
-            foreach ($shop->getProducts() as $product) {
-                Card::render($product);
-            }
+    foreach ($shop->getProducts() as $product) {
         ?>
-    </div>
+        <div class="card">
+            <img class="product-img" src="<?php echo $product->getImage(); ?>" alt="<?php echo $product->getName(); ?>">
+            <h2><?php echo $product->getName(); ?></h2>
+            <p>Prezzo: €<?php echo $product->getPrice(); ?></p>
+            <p>Categoria: <?php echo $product->getCategory()->getName(); ?></p>
+            <p>Tipo: <?php echo $product->getType(); ?></p>
+            <img class="icon" src="<?php echo $product->getCategory()->getIcon(); ?>" alt="Icona <?php echo $product->getCategory()->getName(); ?>">
+        </div>
+        <?php
+    }
+    ?>
+</div>
+
 </body>
 </html>
