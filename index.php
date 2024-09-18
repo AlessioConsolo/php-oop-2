@@ -72,6 +72,19 @@
             return $this->material;
         }
     }
+    class Bed extends Product {
+        private $size;
+
+        public function __construct($name, $price, $image, Category $category, $size) {
+            parent::__construct($name, $price, $image, $category, 'Cuccia');
+            $this->size = $size;
+        }
+
+        public function getSize() {
+            return $this->size;
+        }
+    }
+
 
 ?>
 </body>
