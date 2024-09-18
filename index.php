@@ -128,6 +128,20 @@
         }
     }
 
+    // Categorie
+    $dogCategory = new Category("Cani", "./images/dog.png");
+    $catCategory = new Category("Gatti", "./images/cat.png");
+
+    // Prodotti
+    $dogFood = new Food("Croccantini per Cani", 20.99, "./images/MC_SI_crocchette_MV_2-5.jpg", $dogCategory, "Pollo");
+    $catToy = new Toy("Pallina per Gatti", 5.99, "./images/Screenshot_2024-09-18_175301.png", $catCategory, "Lana");
+    $dogBed = new Bed("Cuccia per Cani", 50.00, "./images/Screenshot_2024-09-18_175749.png", $dogCategory, "Grande");
+
+    // Negozio
+    $shop = new Shop();
+    $shop->addProduct($dogFood);
+    $shop->addProduct($catToy);
+    $shop->addProduct($dogBed);
 
 ?>
 </body>
