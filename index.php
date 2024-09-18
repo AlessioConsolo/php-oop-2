@@ -115,6 +115,19 @@
         }
     }
 
+    class Card {
+        public static function render(Product $product) {
+            echo '<div class="card">';
+            echo '<img class="product-img" src="' . $product->getImage() . '" alt="' . $product->getName() . '">';
+            echo '<h2>' . $product->getName() . '</h2>';
+            echo '<p>Prezzo: €' . $product->getPrice() . '</p>';
+            echo '<p>Categoria: ' . $product->getCategory()->getName() . '</p>';
+            echo '<p>Tipo: ' . $product->getType() . '</p>';
+            echo '<img class="icon" src="' . $product->getCategory()->getIcon() . '" alt="Icona ' . $product->getCategory()->getName() . '">';
+            echo '</div>';
+        }
+    }
+
 
 ?>
 </body>
