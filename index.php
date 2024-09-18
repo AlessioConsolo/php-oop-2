@@ -46,6 +46,19 @@
             return $this->type;
         }
     }
-    ?>
+
+    class Food extends Product {
+        private $flavor;
+
+        public function __construct($name, $price, $image, Category $category, $flavor) {
+            parent::__construct($name, $price, $image, $category, 'Cibo');
+            $this->flavor = $flavor;
+        }
+
+        public function getFlavor() {
+            return $this->flavor;
+        }
+    }
+?>
 </body>
 </html>
