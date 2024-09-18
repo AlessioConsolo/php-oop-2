@@ -59,7 +59,7 @@
             return $this->flavor;
         }
     }
-    
+
     class Toy extends Product {
         private $material;
 
@@ -72,6 +72,7 @@
             return $this->material;
         }
     }
+
     class Bed extends Product {
         private $size;
 
@@ -142,7 +143,15 @@
     $shop->addProduct($dogFood);
     $shop->addProduct($catToy);
     $shop->addProduct($dogBed);
+    ?>
 
-?>
+    <div class="cards-container">
+        <?php
+            // Stampa dei prodotti nel container
+            foreach ($shop->getProducts() as $product) {
+                Card::render($product);
+            }
+        ?>
+    </div>
 </body>
 </html>
