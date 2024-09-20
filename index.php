@@ -67,8 +67,8 @@ class Shop {
 }
 
 // Creazione delle categorie
-$dogCategory = new Category("Cani", "dog-icon.png");
-$catCategory = new Category("Gatti", "cat-icon.png");
+$dogCategory = new Category("Cani", "./images/dog.png");
+$catCategory = new Category("Gatti", "./images/cat.png");
 
 // Creazione di alcuni prodotti
 $product1 = new Product("Croccantini per Cani", 20.99, "./images/MC_SI_crocchette_MV_2-5.jpg", $dogCategory, "Cibo");
